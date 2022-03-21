@@ -1,12 +1,21 @@
 //business interface logic
-function pizza(pizza, size,crust,toppings){
+function Pizza(pizza, size,crust,toppings){
     this.pizza=pizza;
     this.size=size;
     this.crust=crust;
     this.toppings=toppings;
 }
 
-var price size, pricecrust,pricetoppings;
+var pricesize, pricecrust,pricetoppings;
+ 
+$("#orderPizza").click(function () {
+ $(".view-two").toggleClass(".hide")
+ 
+ 
+ 
+ 
+   
+})
 
 //calculate pizza price
 var price = function(pizzaSize, pizzaCrust, pizzaTopping) {
@@ -61,7 +70,7 @@ var price = function(pizzaSize, pizzaCrust, pizzaTopping) {
 
 // user interface logic
 $(document).ready(function() {
-    $("#order-online").click(function() {
+    $("#orderPizza").click(function() {
         $(".view-two").show();
         $(".view-one").hide();
     })
