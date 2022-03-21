@@ -6,6 +6,7 @@ This is a web application that allows customers to order different sizes of pizz
 Adlight Akinyi
 # set up and installation requirements
 git clone
+open terminal{ctrl+alt+T}
 # Technologies used
 html
 CSS
