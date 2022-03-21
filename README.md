@@ -5,7 +5,7 @@ This is a web application that allows customers to order different sizes of pizz
 # Author
 Adlight Akinyi
 # set up and installation requirements
-git clone
+git clone  https://github.com/AdlightAkinyi/Pizza-Palace.git  
 open terminal{ctrl+alt+T}
 # Technologies used
 html
@@ -15,6 +15,7 @@ Javascript
 # Contact details
 0797523148
 adlightakinyi1@gmail.com
+
 
 
 
