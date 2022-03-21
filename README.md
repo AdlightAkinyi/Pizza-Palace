@@ -13,6 +13,7 @@ Bootstrap
 Javascript
 # Contact details
 0797523148
+adlightakinyi1@gmail.com
 
 
 
