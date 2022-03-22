@@ -1,99 +1,100 @@
 //business interface logic
-function Pizza(pizza, size,crust,toppings){
-    this.pizza=pizza;
+function Pizza(size,crust,toppings,total){
     this.size=size;
     this.crust=crust;
     this.toppings=toppings;
+    this.total=total;
 }
+  
+    
+var priceSize, priceCrust,priceToppings;
+var pizzaTotal = priceSize + priceCrust + priceToppings;
 
-var pricesize, pricecrust,pricetoppings;
- 
-$("#orderPizza").click(function () {
- $(".view-two").toggleClass(".hide")
- 
- 
- 
- 
    
-})
 
-//calculate pizza price
-var price = function(pizzaSize, pizzaCrust, pizzaTopping) {
-    switch (pizzaSize) {
+
+ var price = function(pizzaSize, pizzaCrust, pizzaToppings) {
+     switch (pizzaSize) {
         case "":
             priceSize = 0;
             break;
         case "large":
-            priceSize = 1000;
-            break;
-        case "medium":
-            priceSize = 750;
-            break;
+           priceSize = 1000;
+           break;
+         case "medium":
+             priceSize = 750;
+           break;
         case "small":
-            priceSize = 500;
-            break;
-        default:
-            location.reload();
-            alert("Please select a pizza size");
+          priceSize = 500;
+          break;
+       default:
+           location.reload();
+           alert("Please select a pizza size");
     };
 
     switch (pizzaCrust) {
         case "":
-            priceCrust = 0;
-            break;
+           priceCrust = 0;
+           break;
         case "crispy":
             priceCrust = 100;
             break;
-        case "stuffed":
-            priceCrust = 200;
+         case "stuffed":
+             priceCrust = 200;
             break;
-        case "gluten free":
+       case "gluten free":
             priceCrust = 150;
             break;
         default:
-            location.reload();
-            alert("Please choose a crust");
+        location.reload();
+           alert("Please choose a crust");
     };
 
     if (pizzaSize == 'large') {
-        priceTopping = pizzaTopping.length * 150;
-    } else if (pizzaSize == 'medium') {
-        priceTopping = pizzaTopping.length * 100;
-    } else if (pizzaSize == 'small') {
-        priceTopping = pizzaTopping.length * 50;
-    }
+        priceToppings = pizzaTopping.length * 150;
+     } else if (pizzaSize == 'medium') {
+         priceToppings = pizzaTopping.length * 100;
+   } else if (pizzaSize == 'small') {
+        priceToppings = pizzaTopping.length * 50;
+   }
+   var pizzaTotal = priceSize + priceCrust + priceToppings;
+   return pizzaTotal;
 
-    var pizzaTotal = priceSize + priceCrust + priceTopping;
-    return pizzaTotal;
-}
+  }
 
 
 // user interface logic
-$(document).ready(function() {
-    $("#orderPizza").click(function() {
-        $(".view-two").show();
-        $(".view-one").hide();
+$(document).ready(function() {    
+    $("button#orderPizza").click(function() {
+        $(".view-two").toggle();
+        $(".view-one").toggle();
     })
 
     //Continue button
-    $("#continue").click(function(event) {
-        event.preventDefault();
+    $("#continue1").click(function(event) {
+        event.preventDefault()
+        
+        
         $(".view-three").show();
         $(".view-two").hide();
+        $(".view-four").hide();
+        $("#continue1").hide();
+        $(".checkbox").hide();
+
+       
         //get form values
-        let pizzaName = $("#pizza option:selected").val();
-        let pizzaSize = $("#size option:selected").val();
-        let pizzaCrust = $("#crust option:selected").val();
-        var pizzaTopping = [];
-        $("input:checkbox[name=toppings]:checked").each(function() {
-            pizzaTopping.push($(this).val());
-        });
+        let pizzaSize = $(".size option:selected").val();
+        let pizzaCrust = $(".crust option:selected").val();
+        let pizzaTopping = $(".toppings option:selected").val();
+        
 
-        var total = price(pizzaSize, pizzaCrust, pizzaTopping);
+        var total = pizzaTotal;
         var grandTotal = total + 200;
-        var order = new Pizza(pizzaName, pizzaSize, pizzaCrust, pizzaTopping)
+        var newPizza = new Pizza(pizzaSize, pizzaCrust, pizzaTopping,total)
+          var newRow='<tr><td>' +newPizza.size+'</td><td> id="size"' +newPizza.crust+'</td><td>id="cust"'+newPizza.toppings+'</td><td> id="toppings"'+newPizza.total+'</td></tr> id="total"'
+          $(".confirm-order").append(newRow); 
         $(".current-order").append('<tr><td id="name">' + order.pizza + '</td><td id="size">' + order.size + '</td><td id="crust">' + order.crust + '</td><td id="toppings">' + order.toppings + '</td><td id="total">' + total);
-
+    })
          //Pickup button
          $("#pick-up").click(function() {
             alert("Dear customer, your order will be ready for pickup in 1 hour. Your order total is: " + total);
@@ -115,7 +116,7 @@ $(document).ready(function() {
                 alert("Dear " + clientName + " your order will be delivered to " + clientLocation + " within the hour! Your order total is: " +
                 grandTotal + " Our rider will call you on arrival");
         }
-    })
+    
 })
 
 
